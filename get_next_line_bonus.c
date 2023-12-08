@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hipham <hipham@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/09 17:12:16 by hipham            #+#    #+#             */
-/*   Updated: 2023/12/07 20:44:52 by hipham           ###   ########.fr       */
+/*   Created: 2023/12/07 15:11:11 by hipham            #+#    #+#             */
+/*   Updated: 2023/12/08 10:47:41 by hipham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 static char	*save_rest(char *line)
 {
@@ -84,40 +84,53 @@ static char	*read_line(int fd, char *store, char *buffer)
 char	*get_next_line(int fd)
 {
 	char		*return_line;
-	static char	*read_str;
+	static char	*read_str[OPEN_MAX];
 	char		buffer[BUFFER_SIZE + 1];
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || fd > OPEN_MAX)
 		return (NULL);
 	if (read(fd, 0, 0) < 0)
 	{
-		free(read_str);
-		read_str = NULL;
+		free(read_str[fd]);
+		read_str[fd] = NULL;
 		return (NULL);
 	}
-	if (!read_str)
-		read_str = ft_strdup("");
-	read_str = read_line(fd, read_str, buffer);
-	if (read_str == NULL)
+	if (!read_str[fd])
+		read_str[fd] = ft_strdup("");
+	read_str[fd] = read_line(fd, read_str[fd], buffer);
+	if (read_str[fd] == NULL)
 		return (NULL);
-	return_line = get_line(read_str);
-	read_str = save_rest(read_str);
+	return_line = get_line(read_str[fd]);
+	read_str[fd] = save_rest(read_str[fd]);
 	return (return_line);
 }
 
-// int	main(void)
+// int main(void)
 // {
-// 	char	*line;
-// 	int		fd;
+// 	int fd;
+// 	int fd2;
+// 	char *line;
 
-// 	fd = open("onlynl.txt", O_RDONLY);
-// 	if (fd == -1)
-// 		return (0);
+// 	fd = open("1line.txt", O_RDONLY);
+// 	fd2 = open("test.txt", O_RDONLY);
+// 	if (fd < 0 || fd2 < 0)
+// 	{
+// 		perror("Error opening file");
+// 		return (1);
+// 	}
 // 	while ((line = get_next_line(fd)))
 // 	{
 // 		printf("%s", line);
 // 		free(line);
+// 		while ((line = get_next_line(fd2)))
+// 		{
+// 			printf("%s", line);
+// 			free(line);
+// 		}
 // 	}
+// 	// line = get_next_line(fd);
+// 	// printf ("%s", line);
+// 	// free(line);
 // 	close(fd);
 // 	return (0);
 // }
