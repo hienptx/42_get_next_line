@@ -6,7 +6,11 @@
 /*   By: hipham <hipham@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 17:12:16 by hipham            #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/12/08 13:13:59 by hipham           ###   ########.fr       */
+=======
+/*   Updated: 2023/12/07 20:44:52 by hipham           ###   ########.fr       */
+>>>>>>> origin/main
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,11 +100,15 @@ char	*get_next_line(int fd)
 		return (NULL);
 	}
 	if (!read_str)
+<<<<<<< HEAD
 	{
 		read_str = ft_strdup("");
 		if (read_str == NULL)
 			return (NULL);
 	}
+=======
+		read_str = ft_strdup("");
+>>>>>>> origin/main
 	read_str = read_line(fd, read_str, buffer);
 	if (read_str == NULL)
 		return (NULL);
