@@ -100,15 +100,11 @@ char	*get_next_line(int fd)
 		return (NULL);
 	}
 	if (!read_str)
-<<<<<<< HEAD
 	{
 		read_str = ft_strdup("");
 		if (read_str == NULL)
 			return (NULL);
 	}
-=======
-		read_str = ft_strdup("");
->>>>>>> origin/main
 	read_str = read_line(fd, read_str, buffer);
 	if (read_str == NULL)
 		return (NULL);
