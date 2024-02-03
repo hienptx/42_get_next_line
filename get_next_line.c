@@ -31,6 +31,11 @@ static char	*save_rest(char *line)
 			return (NULL);
 		temp = ft_memcpy(temp, start + 1, len);
 		temp[len] = '\0';
+		if (*line == '\0')
+		{
+			free(line);
+			return (NULL);
+		}
 	}
 	else
 		temp = NULL;
