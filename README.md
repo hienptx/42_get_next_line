@@ -20,8 +20,13 @@ From readed string get first line (until the newline)->
 Before returning the line save the rest which not belong to 1.line -> 
 Join the rest to it's real line at getting the next line. ->
 Repeat this logic till the EOF.
+
 In building gnl some other selfbuilt funtions are utilized, they are placed in get_next_line_utils.c in the gnl reposity such as: 
+
 _char	*ft_strjoin(char const *s1, char const *s2)_
+
 _size_t	ft_strlen(const char *s)_
+
 _void	*ft_memcpy(void *dst, const void *src, size_t n)_
+
 _char	*ft_strdup(const char *s1)_
