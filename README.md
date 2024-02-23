@@ -15,7 +15,7 @@ Placing gnl in an infinite loop, it walks you through the file line by line unti
 **HOW IS IT BUILT?**
 The logic behind: 
 -> Read the n given bytes to a string 
--> From readed string get first line (until the newline)
+-> From readed string get first line (until the newline '\n')
 -> Before returning the line save the rest which not belong to 1.line 
 -> Join the rest to it's real line at getting the next line. 
 -> Repeat this logic till the EOF.
@@ -29,3 +29,5 @@ _size_t	ft_strlen(const char *s)_
 _void	*ft_memcpy(void *dst, const void *src, size_t n)_
 
 _char	*ft_strdup(const char *s1)_
+
+P/s: Sources Link: https://www.codequoi.com/en/handling-a-file-by-its-descriptor-in-c/ 
